@@ -561,8 +561,8 @@ static const int kMaxCachedPageViewCount = 3; // should be odd
 - (IBAction)facebookSend:(id)sender
 {
     facebookDisappear = true;
-    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) //check if Facebook Account is linked
-    {
+    //if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) //check if Facebook Account is linked
+    //{
         mySLComposerSheet = [[SLComposeViewController alloc] init]; //initiate the Social Controller
         mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook]; //Tell him with what social plattform to use it, e.g. facebook or twitter
         [mySLComposerSheet setInitialText:[NSString stringWithFormat:@""]]; //the message you want to post
@@ -571,7 +571,7 @@ static const int kMaxCachedPageViewCount = 3; // should be odd
         [mySLComposerSheet addImage:context.uiImage]; //an image you could post
         //for more instance methodes, go here:https://developer.apple.com/library/ios/#documentation/NetworkingInternet/Reference/SLComposeViewController_Class/Reference/Reference.html#//apple_ref/doc/uid/TP40012205
         [self presentViewController:mySLComposerSheet animated:YES completion:nil];
-    }
+    //}
     [mySLComposerSheet setCompletionHandler:^(SLComposeViewControllerResult result) {
         NSString *output;
         switch (result) {
@@ -594,13 +594,13 @@ static const int kMaxCachedPageViewCount = 3; // should be odd
     messageDisappear = true;
     MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
     controller.mailComposeDelegate = self;
-    [controller setSubject:@"My Subject"];
+    [controller setSubject:@""];
     //NSData *data = [[NSData alloc] initWithContentsOfFile:@"0.jpg"];
     //UIImage *image = [UIImage imageNamed:@"0.jpg"];
     CapturedContext *context = [self focusedCapturedContext];
     NSData *data = UIImageJPEGRepresentation(context.uiImage, .5);
-    [controller addAttachmentData:data mimeType:@"image/jpeg" fileName:@"0.jpg"];
-    [controller setMessageBody:@"Hello there." isHTML:NO];
+    [controller addAttachmentData:data mimeType:@"image/jpeg" fileName:@"vizSnapPhoto.jpg"];
+    [controller setMessageBody:@"" isHTML:NO];
     
     if (controller)
     {

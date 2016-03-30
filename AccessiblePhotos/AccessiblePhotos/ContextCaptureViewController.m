@@ -9,8 +9,8 @@
 #import "ContextCaptureViewController.h"
 #import "ContextCaptureViewController_Protected.h"
 #import "CapturedContextManager.h"
-#import "UserManager.h"
-#import "WebRequestManager.h"
+//#import "UserManager.h"
+//#import "WebRequestManager.h"
 #import "LocationManager.h"
 #import "Settings.h"
 #import "FileUtils.h"
@@ -158,18 +158,22 @@
     
     //////////////////////////////////////////////
     // Register to observe application notifications
+    
     applicationWillResignActiveObserver = [[NSNotificationCenter defaultCenter] addObserverForName:@"com.ibm.research.tokyo.AccessiblePhotos.ApplicationWillResignActive" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note)
     {
         [self handleApplicationWillResignActive];
     }];
+    
     applicationDidEnterBackgroundObserver = [[NSNotificationCenter defaultCenter] addObserverForName:@"com.ibm.research.tokyo.AccessiblePhotos.ApplicationDidEnterBackground" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note)
     {
         [self handleApplicationDidEnterBackground];
     }];
+    
     applicationWillEnterForegroundObserver = [[NSNotificationCenter defaultCenter] addObserverForName:@"com.ibm.research.tokyo.AccessiblePhotos.ApplicationWillEnterForeground" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note)
     {
         [self handleApplicationWillEnterForeground];
     }];
+    
     applicationDidBecomeActiveObserver = [[NSNotificationCenter defaultCenter] addObserverForName:@"com.ibm.research.tokyo.AccessiblePhotos.ApplicationDidBecomeActive" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note)
     {
         [self handleApplicationDidBecomeActive];
@@ -257,12 +261,6 @@
         actionViewController.capturedContext = self.capturedContext;
         actionViewController.delegate = self;
         
-        if ([Settings sharedInstance].requestSendingEnabled &&
-            [UserManager sharedManager].currentUser != nil &&
-            [UserManager sharedManager].currentUser.supporterGroups.count > 0)
-        {
-            actionViewController.groupsToSendTo = [UserManager sharedManager].currentUser.supporterGroups;
-        }
     }
 }
 
@@ -653,7 +651,6 @@
     // FIX: hardcoded message. 
     if (self.capturedContext != nil && self.capturedContext.uiImage != nil)
     {
-        [[WebRequestManager sharedManager] uploadImage:self.capturedContext.uiImage forUser:[UserManager sharedManager].currentUser toGroup:groupName withMessage:@"What is this?"];
         NSString *message = [NSString stringWithFormat:@"Sent captured photo to group %@", groupName];
         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message);
      

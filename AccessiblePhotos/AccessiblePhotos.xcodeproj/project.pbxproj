@@ -12,6 +12,7 @@
 		0B31DF4E1A365E6600F90009 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B31DF4C1A365E6600F90009 /* Social.framework */; };
 		0B35F7CC18B6728B00CB6A1C /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B35F7CB18B6728B00CB6A1C /* SearchTableViewController.m */; };
 		0B35F7D318B679F000CB6A1C /* SearchAudioPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B35F7D218B679F000CB6A1C /* SearchAudioPreviewViewController.m */; };
+		0BDA91251A3BA2D1004C7DDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BDA91241A3BA2D1004C7DDF /* Images.xcassets */; };
 		7319917515CA9E5400B40C24 /* ByGroupingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7319917415CA9E5400B40C24 /* ByGroupingTableViewController.m */; };
 		7319917815CADE4400B40C24 /* ByMonthTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7319917715CADE4400B40C24 /* ByMonthTableViewController.m */; };
 		731DF3C715BD296D0080D2FA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 731DF3C515BD296D0080D2FA /* MainStoryboard.storyboard */; };
@@ -31,7 +32,6 @@
 		7346216615D36DC20060CE75 /* CapturedContextGroupingNodeDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7346216515D36DC20060CE75 /* CapturedContextGroupingNodeDataBase.m */; };
 		7346216815D377330060CE75 /* CapturedContextDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7346216715D377330060CE75 /* CapturedContextDetailView.xib */; };
 		7346216B15D378490060CE75 /* CapturedContextDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7346216A15D378490060CE75 /* CapturedContextDetailView.m */; };
-		734AF85615B03F92009C5FB2 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 734AF85515B03F91009C5FB2 /* LoginViewController.m */; };
 		73585EB015C932B5002D67E9 /* CapturedContextActionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73585EAF15C932B5002D67E9 /* CapturedContextActionHeaderView.xib */; };
 		73585EB315C9332B002D67E9 /* CapturedContextActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73585EB215C9332B002D67E9 /* CapturedContextActionViewController.m */; };
 		73585EB915C934D0002D67E9 /* CapturedContextActionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73585EB815C934CF002D67E9 /* CapturedContextActionHeaderView.m */; };
@@ -59,11 +59,6 @@
 		73CB79CB15AEDF5100C250FB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73CB79CA15AEDF5100C250FB /* SystemConfiguration.framework */; };
 		73CB79CD15AEDF5800C250FB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73CB79CC15AEDF5800C250FB /* QuartzCore.framework */; };
 		73CB79CF15AEDF6200C250FB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 73CB79CE15AEDF6200C250FB /* libxml2.dylib */; };
-		73CB79E715AEE17B00C250FB /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73CB79DC15AEE08300C250FB /* libRestKit.a */; };
-		73CB79EA15AEE4CF00C250FB /* WebRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB79E915AEE4CF00C250FB /* WebRequestManager.m */; };
-		73CB79EF15AEE53400C250FB /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB79EC15AEE53400C250FB /* User.m */; };
-		73CB79F015AEE53400C250FB /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB79EE15AEE53400C250FB /* UserManager.m */; };
-		73CB79F315AEE5E600C250FB /* UserRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB79F215AEE5E500C250FB /* UserRequest.m */; };
 		73CB79F615AEE6F100C250FB /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB79F515AEE6F100C250FB /* FileUtils.m */; };
 		73CB79F915AEE82300C250FB /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB79F815AEE82300C250FB /* NSData+Base64.m */; };
 		73CB79FC15AEE91500C250FB /* NSDictionary+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB79FB15AEE91500C250FB /* NSDictionary+JSON.m */; };
@@ -98,48 +93,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		73CB79DB15AEE08300C250FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73CB79D015AEE08300C250FB /* RestKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 25160D1614564E810060A5C5;
-			remoteInfo = RestKit;
-		};
-		73CB79DD15AEE08300C250FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73CB79D015AEE08300C250FB /* RestKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 25160D2614564E820060A5C5;
-			remoteInfo = RestKitTests;
-		};
-		73CB79DF15AEE08300C250FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73CB79D015AEE08300C250FB /* RestKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 25160E62145651060060A5C5;
-			remoteInfo = RestKitFramework;
-		};
-		73CB79E115AEE08300C250FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73CB79D015AEE08300C250FB /* RestKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 25160E78145651060060A5C5;
-			remoteInfo = RestKitFrameworkTests;
-		};
-		73CB79E315AEE08300C250FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73CB79D015AEE08300C250FB /* RestKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 259C301615128079003066A2;
-			remoteInfo = RestKitResources;
-		};
-		73CB79E515AEE16700C250FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73CB79D015AEE08300C250FB /* RestKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 25160D1514564E810060A5C5;
-			remoteInfo = RestKit;
-		};
 		DAE93E9615A3D7E2003BC12D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DAE93E6715A3D7E2003BC12D /* Project object */;
@@ -157,6 +110,7 @@
 		0B35F7CB18B6728B00CB6A1C /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		0B35F7D118B679F000CB6A1C /* SearchAudioPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAudioPreviewViewController.h; sourceTree = "<group>"; };
 		0B35F7D218B679F000CB6A1C /* SearchAudioPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAudioPreviewViewController.m; sourceTree = "<group>"; };
+		0BDA91241A3BA2D1004C7DDF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7319917315CA9E5400B40C24 /* ByGroupingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ByGroupingTableViewController.h; sourceTree = "<group>"; };
 		7319917415CA9E5400B40C24 /* ByGroupingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ByGroupingTableViewController.m; sourceTree = "<group>"; };
 		7319917615CADE4400B40C24 /* ByMonthTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ByMonthTableViewController.h; sourceTree = "<group>"; };
@@ -194,8 +148,6 @@
 		7346216715D377330060CE75 /* CapturedContextDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CapturedContextDetailView.xib; sourceTree = "<group>"; };
 		7346216915D378490060CE75 /* CapturedContextDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapturedContextDetailView.h; sourceTree = "<group>"; };
 		7346216A15D378490060CE75 /* CapturedContextDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapturedContextDetailView.m; sourceTree = "<group>"; };
-		734AF85415B03F91009C5FB2 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		734AF85515B03F91009C5FB2 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		73585EAF15C932B5002D67E9 /* CapturedContextActionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CapturedContextActionHeaderView.xib; sourceTree = "<group>"; };
 		73585EB115C9332B002D67E9 /* CapturedContextActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapturedContextActionViewController.h; sourceTree = "<group>"; };
 		73585EB215C9332B002D67E9 /* CapturedContextActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapturedContextActionViewController.m; sourceTree = "<group>"; };
@@ -231,15 +183,6 @@
 		73CB79CA15AEDF5100C250FB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		73CB79CC15AEDF5800C250FB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		73CB79CE15AEDF6200C250FB /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		73CB79D015AEE08300C250FB /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
-		73CB79E815AEE4CF00C250FB /* WebRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebRequestManager.h; sourceTree = "<group>"; };
-		73CB79E915AEE4CF00C250FB /* WebRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebRequestManager.m; sourceTree = "<group>"; };
-		73CB79EB15AEE53400C250FB /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		73CB79EC15AEE53400C250FB /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		73CB79ED15AEE53400C250FB /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
-		73CB79EE15AEE53400C250FB /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
-		73CB79F115AEE5E500C250FB /* UserRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRequest.h; sourceTree = "<group>"; };
-		73CB79F215AEE5E500C250FB /* UserRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRequest.m; sourceTree = "<group>"; };
 		73CB79F415AEE6F100C250FB /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtils.h; sourceTree = "<group>"; };
 		73CB79F515AEE6F100C250FB /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtils.m; sourceTree = "<group>"; };
 		73CB79F715AEE82300C250FB /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
@@ -315,7 +258,6 @@
 				DAE93ECD15AAB71A003BC12D /* ImageIO.framework in Frameworks */,
 				73AA12D015BF794F00C97D27 /* MediaPlayer.framework in Frameworks */,
 				DAE93EB215A3D85D003BC12D /* MobileCoreServices.framework in Frameworks */,
-				73CB79E715AEE17B00C250FB /* libRestKit.a in Frameworks */,
 				73CB79CF15AEDF6200C250FB /* libxml2.dylib in Frameworks */,
 				73CB79CD15AEDF5800C250FB /* QuartzCore.framework in Frameworks */,
 				73CB79C915AEDF4C00C250FB /* Security.framework in Frameworks */,
@@ -372,21 +314,6 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
-		73A388A015AFE8AD007B217E /* User */ = {
-			isa = PBXGroup;
-			children = (
-				73CB79E815AEE4CF00C250FB /* WebRequestManager.h */,
-				73CB79E915AEE4CF00C250FB /* WebRequestManager.m */,
-				73CB79EB15AEE53400C250FB /* User.h */,
-				73CB79EC15AEE53400C250FB /* User.m */,
-				73CB79F115AEE5E500C250FB /* UserRequest.h */,
-				73CB79F215AEE5E500C250FB /* UserRequest.m */,
-				73CB79ED15AEE53400C250FB /* UserManager.h */,
-				73CB79EE15AEE53400C250FB /* UserManager.m */,
-			);
-			name = User;
-			sourceTree = "<group>";
-		};
 		73A388A415B024DC007B217E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,8 +352,6 @@
 				731DF41315BE3A2D0080D2FA /* ButtonBasedContextCaptureViewController.m */,
 				73A388A515B02644007B217E /* NoAnimationStoryboardSegue.h */,
 				73A388A615B02644007B217E /* NoAnimationStoryboardSegue.m */,
-				734AF85415B03F91009C5FB2 /* LoginViewController.h */,
-				734AF85515B03F91009C5FB2 /* LoginViewController.m */,
 				731DF43E15BEA3700080D2FA /* SettingsViewController.h */,
 				731DF43F15BEA3710080D2FA /* SettingsViewController.m */,
 				73DFBC0215C7823900DFC1DF /* ValueSelectionViewController.h */,
@@ -437,22 +362,9 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		73CB79D115AEE08300C250FB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				73CB79DC15AEE08300C250FB /* libRestKit.a */,
-				73CB79DE15AEE08300C250FB /* RestKitTests.octest */,
-				73CB79E015AEE08300C250FB /* RestKit.framework */,
-				73CB79E215AEE08300C250FB /* RestKitFrameworkTests.octest */,
-				73CB79E415AEE08300C250FB /* RestKitResources.bundle */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		DAE93E6515A3D7E2003BC12D = {
 			isa = PBXGroup;
 			children = (
-				73CB79D015AEE08300C250FB /* RestKit.xcodeproj */,
 				DAE93E7A15A3D7E2003BC12D /* AccessiblePhotos */,
 				DAE93E9815A3D7E2003BC12D /* AccessiblePhotosTests */,
 				DAE93E7315A3D7E2003BC12D /* Frameworks */,
@@ -522,7 +434,6 @@
 				73D3D81715AE97A4005DE508 /* CapturedContext.m */,
 				73D3D81A15AEA5FB005DE508 /* CapturedContextManager.h */,
 				73D3D81B15AEA5FB005DE508 /* CapturedContextManager.m */,
-				73A388A015AFE8AD007B217E /* User */,
 				73A3889F15AFE8A3007B217E /* Utils */,
 				73B3586215B7DE37009A95E6 /* LocationManager.h */,
 				73B3586315B7DE37009A95E6 /* LocationManager.m */,
@@ -540,6 +451,7 @@
 				7346216515D36DC20060CE75 /* CapturedContextGroupingNodeDataBase.m */,
 				73CB51BA15DB5D8000AB0206 /* AudioSessionManager.h */,
 				73CB51BB15DB5D8000AB0206 /* AudioSessionManager.m */,
+				0BDA91241A3BA2D1004C7DDF /* Images.xcassets */,
 			);
 			path = AccessiblePhotos;
 			sourceTree = "<group>";
@@ -590,7 +502,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				73CB79E615AEE16700C250FB /* PBXTargetDependency */,
 			);
 			name = AccessiblePhotos;
 			productName = AccessiblePhotos;
@@ -614,7 +525,7 @@
 			name = AccessiblePhotosTests;
 			productName = AccessiblePhotosTests;
 			productReference = DAE93E9115A3D7E2003BC12D /* AccessiblePhotosTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -623,10 +534,11 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = AccessiblePhotos;
+				LastTestingUpgradeCheck = 0610;
 				LastUpgradeCheck = 0430;
 				TargetAttributes = {
 					DAE93E6F15A3D7E2003BC12D = {
-						DevelopmentTeam = Z5SLZ6QPTL;
+						DevelopmentTeam = LG5VEHYC4D;
 					};
 				};
 			};
@@ -641,12 +553,6 @@
 			mainGroup = DAE93E6515A3D7E2003BC12D;
 			productRefGroup = DAE93E7115A3D7E2003BC12D /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 73CB79D115AEE08300C250FB /* Products */;
-					ProjectRef = 73CB79D015AEE08300C250FB /* RestKit.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				DAE93E6F15A3D7E2003BC12D /* AccessiblePhotos */,
@@ -654,44 +560,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		73CB79DC15AEE08300C250FB /* libRestKit.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRestKit.a;
-			remoteRef = 73CB79DB15AEE08300C250FB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		73CB79DE15AEE08300C250FB /* RestKitTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = RestKitTests.octest;
-			remoteRef = 73CB79DD15AEE08300C250FB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		73CB79E015AEE08300C250FB /* RestKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = RestKit.framework;
-			remoteRef = 73CB79DF15AEE08300C250FB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		73CB79E215AEE08300C250FB /* RestKitFrameworkTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = RestKitFrameworkTests.octest;
-			remoteRef = 73CB79E115AEE08300C250FB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		73CB79E415AEE08300C250FB /* RestKitResources.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = RestKitResources.bundle;
-			remoteRef = 73CB79E315AEE08300C250FB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		DAE93E6E15A3D7E2003BC12D /* Resources */ = {
@@ -701,6 +569,7 @@
 				DAE93E7F15A3D7E2003BC12D /* InfoPlist.strings in Resources */,
 				73BC18E115A5E30D003709C4 /* 72714__horsthorstensen__shutter-photo.caf in Resources */,
 				736694D215B5047E0079DDFE /* Settings.bundle in Resources */,
+				0BDA91251A3BA2D1004C7DDF /* Images.xcassets in Resources */,
 				731DF3C715BD296D0080D2FA /* MainStoryboard.storyboard in Resources */,
 				737B9F5815C21AEB00F10F9C /* AudioTableCell.xib in Resources */,
 				73585EB015C932B5002D67E9 /* CapturedContextActionHeaderView.xib in Resources */,
@@ -752,16 +621,11 @@
 				73D3D81815AE97A4005DE508 /* CapturedContext.m in Sources */,
 				73D3D81C15AEA5FB005DE508 /* CapturedContextManager.m in Sources */,
 				DAE93EE715AE723D003BC12D /* ByDateTableViewController.m in Sources */,
-				73CB79EA15AEE4CF00C250FB /* WebRequestManager.m in Sources */,
-				73CB79EF15AEE53400C250FB /* User.m in Sources */,
-				73CB79F015AEE53400C250FB /* UserManager.m in Sources */,
-				73CB79F315AEE5E600C250FB /* UserRequest.m in Sources */,
 				73CB79F615AEE6F100C250FB /* FileUtils.m in Sources */,
 				73CB79F915AEE82300C250FB /* NSData+Base64.m in Sources */,
 				73CB79FC15AEE91500C250FB /* NSDictionary+JSON.m in Sources */,
 				73A3889E15AFE89B007B217E /* AccessibleGestureView.m in Sources */,
 				73A388A715B02644007B217E /* NoAnimationStoryboardSegue.m in Sources */,
-				734AF85615B03F92009C5FB2 /* LoginViewController.m in Sources */,
 				732559B015B658E700B24CF6 /* CaptureGestureHandler.m in Sources */,
 				73B3586415B7DE37009A95E6 /* LocationManager.m in Sources */,
 				DA272A2D15BE3B0400C34913 /* AudioTableViewController.m in Sources */,
@@ -807,11 +671,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		73CB79E615AEE16700C250FB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RestKit;
-			targetProxy = 73CB79E515AEE16700C250FB /* PBXContainerItemProxy */;
-		};
 		DAE93E9715A3D7E2003BC12D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DAE93E6F15A3D7E2003BC12D /* AccessiblePhotos */;
@@ -860,7 +719,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -885,7 +744,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dustin Adams (VX9L7VRLRH)";
 				COPY_PHASE_STRIP = YES;
@@ -905,13 +764,15 @@
 		DAE93EA415A3D7E2003BC12D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessiblePhotos/AccessiblePhotos-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "AccessiblePhotos/AccessiblePhotos-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AccessiblePhotos\"",
@@ -923,7 +784,7 @@
 				);
 				PRODUCT_NAME = tokyo;
 				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -931,13 +792,15 @@
 		DAE93EA515A3D7E2003BC12D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessiblePhotos/AccessiblePhotos-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "AccessiblePhotos/AccessiblePhotos-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AccessiblePhotos\"",
@@ -950,7 +813,7 @@
 				PRODUCT_NAME = tokyo;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

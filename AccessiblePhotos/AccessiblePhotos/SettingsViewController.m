@@ -8,11 +8,11 @@
 
 #import "SettingsViewController.h"
 #import "Settings.h"
-#import "UserManager.h"
-#import "LoginViewController.h"
+//#import "UserManager.h"
+//#import "LoginViewController.h"
 #import "ValueSelectionViewController.h"
 
-@interface SettingsViewController () <LoginViewControllerDelegate, ValueSelectionViewControllerDelegate>
+@interface SettingsViewController () <ValueSelectionViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel *logInOutLabel;
 @property (nonatomic, weak) IBOutlet UISwitch *alwaysStartInCameraViewSwitch;
@@ -60,12 +60,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([@"showLoginDialogSegue" isEqualToString:segue.identifier])
-    {
-        LoginViewController *loginViewController = segue.destinationViewController;
-        loginViewController.delegate = self;
-    }
-    else if ([@"chooseMaxAmbientAudioRecordingDurationSegue" isEqualToString:segue.identifier])
+    if ([@"chooseMaxAmbientAudioRecordingDurationSegue" isEqualToString:segue.identifier])
     {
         segueCell = sender;
         ValueSelectionViewController *controller = segue.destinationViewController;
@@ -145,7 +140,7 @@
 {
     NSString *title = [super tableView:tableView titleForHeaderInSection:section];
     
-    if (section == 0)
+    /*if (section == 0)
     {
         if ([UserManager sharedManager].currentUser == nil)
         {
@@ -157,7 +152,7 @@
             title = [NSString stringWithFormat:@"Logged in as: %@", [UserManager sharedManager].currentUser.userId];
             self.logInOutLabel.text = @"Logout";
         }
-    }
+    }*/
     
     return title;
 }
@@ -170,18 +165,8 @@
     {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         
-        if ([UserManager sharedManager].currentUser == nil)
-        {
-            // User has been using without logging in, and now
-            // wants to log in
-            [Settings sharedInstance].useWithoutLoggingIn = NO;
-            [[Settings sharedInstance] saveSettings];
-        }
-        else
-        {
-            [[UserManager sharedManager] logoutCurrentUser];
-        }
         
+        //we might be deleting this showLoginDialogSegue line completely, because we're trying to remove all traces of user login. 6/8/2015
         [self performSegueWithIdentifier:@"showLoginDialogSegue" sender:self];
     }
     else if (indexPath.section == 3 && indexPath.row == 0)
@@ -190,17 +175,6 @@
     }
 }
 
-#pragma mark - LoginViewControllerDelegate
-
-- (void)loginViewController:(LoginViewController *)controller loggedInUser:(User *)user
-{
-    [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)loginViewControllerUseWithoutLoggingIn:(LoginViewController *)controller
-{
-    [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
-}
 
 #pragma mark - ValueSelectionViewControllerDelegate
 

@@ -44,6 +44,9 @@
     if (updateLocation || updateHeading)
     {
         NSLog(@"Starting location update");
+        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [locationManager requestWhenInUseAuthorization];
+        }
         [locationManager startUpdatingLocation];
     }
     if (updateHeading)

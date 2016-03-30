@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WebRequestManager.h"
+//#import "WebRequestManager.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,
-WebRequestManagerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

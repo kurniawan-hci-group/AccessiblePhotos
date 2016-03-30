@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "UserManager.h"
+//#import "UserManager.h"
 #import "Settings.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "ByGroupingTableViewController.h"
@@ -25,11 +25,6 @@
     // Set up the audio session parameters.
     [AudioSessionManager sharedManager].currentMode = kAudioSessionModeNoAudio;
     
-    if ([Settings sharedInstance].requestSendingEnabled)
-    {
-        // Become the delegate to listen to response from supporters
-        [WebRequestManager sharedManager].delegate = self;
-    }
     
     if ([self.window.rootViewController isKindOfClass:[UITabBarController class]])
     {
@@ -61,8 +56,11 @@
 //        }
     }
     
+    
+    //BELOW IF STATEMENT COMMENTED OUT BY DUSTIN 03/16/2015. This block of code is causing the tab to disappear
+    
     // Disable certain tabs if in standard mode.
-    if ([Settings sharedInstance].interfaceType == kInterfaceTypeStandard)
+    /*if ([Settings sharedInstance].interfaceType == kInterfaceTypeStandard)
     {
         if ([self.window.rootViewController isKindOfClass:[UITabBarController class]])
         {
@@ -71,7 +69,7 @@
             [tabs removeObjectAtIndex:2];
             tabBarController.viewControllers = tabs;
         }
-    }
+    }*/
     
     if ([Settings sharedInstance].alwaysStartInCameraView == NO)
     {
@@ -81,7 +79,7 @@
             tabBarController.selectedIndex = 1;
         }
     }
-    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     return YES;
 }
 							
@@ -140,19 +138,6 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Post a notification
     [[NSNotificationCenter defaultCenter] postNotificationName:@"com.ibm.research.tokyo.AccessiblePhotos.ApplicationWillTerminate" object:nil];
-}
-
-#pragma mark - WebRequestManagerDelegate
-
-- (void)gotResponse:(RequestResponse *)response toRequest:(RequestSubmission *)request
-{
-    // FIX: Need to figure out how to handle 
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Received reply", @"AppDelegate")
-                                                      message:response.answer
-                                                     delegate:nil
-                                            cancelButtonTitle:@"OK"
-                                            otherButtonTitles:nil];
-    [message show];
 }
 
 @end

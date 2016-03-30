@@ -10,7 +10,7 @@
 #import "AccessibleGestureView.h"
 #import "CaptureGestureHandler.h"
 #import "ContextCaptureViewController_Protected.h"
-#import "UserManager.h"
+//#import "UserManager.h"
 
 typedef enum
 {
@@ -31,6 +31,9 @@ typedef enum
     AccessibleGestureView *accessibleGestureView;
     CaptureGestureHandler *captureGestureHandler;
     NSString *currentStatus;
+    UILabel *recordingAudioLabel;
+    bool recordingLabelShouldBeShowing;
+    bool recordingLabelIsShowing;
 }
 
 @synthesize currentState = _currentState;
@@ -41,17 +44,24 @@ typedef enum
     _currentState = newState;
     
     switch (self.currentState) {
+            //removing the Swipe right (1-finger) statement because we're removing that option for right now. June 4, 2015
         case kGestureBasedContextCaptureStateInitial:
-            instructionLabel.text = @"Single-tap (1-finger): enable gesture\nSingle-tap (2-finger): toggle help\nSwipe left (1-finger): cancel\nSwipe down (1-finger): save to album\nSwipe right (1-finger): save and preview\nSwipe up (1-finger): save and record memo";
+            [instructionLabel setFont:[UIFont boldSystemFontOfSize:18]];
+            instructionLabel.text = @"(VoiceOver Gestures)\nSingle-tap (1-finger): enable gesture\nSingle-tap (2-finger): toggle help\nSwipe left (1-finger): cancel\nSwipe down (1-finger): save to album\nSwipe up (1-finger): save and\nrecord memo";
             currentStatus = @"Audio is recording.";
+            [recordingAudioLabel setHidden:false];
+            recordingLabelShouldBeShowing = true;
             
             //Here we can start recording with OpenEars and make a long list of words we actually detect. We shouldn't commit that list to memory (save) until the user has swiped left (meaning they capture a photo).
             break;
             
         case kGestureBasedContextCaptureStateAwaitingMemo:
-            instructionLabel.text = @"Single-tap (2-finger): toggle help\nSwipe left (1-finger): cancel\nSwipe up (1-finger): save to album\nTap and hold (1-finger): start recording memo";
+            [instructionLabel setFont:[UIFont boldSystemFontOfSize:18]];
+            instructionLabel.text = @"(VoiceOver Gestures)\nSingle-tap (2-finger): toggle help\nSwipe left (1-finger): cancel\nSwipe up (1-finger): save to album\nTap and hold (1-finger): start\nrecording memo";
 //            currentStatus = @"Photo has been captured. Audio is not recording. Tap and hold to begin memo recording, or swipe up to save without memo, or swipe left to cancel and start recording new audio.";
             currentStatus = @"Record memo?";
+            [recordingAudioLabel setHidden:true];
+            recordingLabelShouldBeShowing = false;
             break;
     }
 }
@@ -95,6 +105,27 @@ typedef enum
     self.currentState = kGestureBasedContextCaptureStateInitial;
     
     //THIS IS PROBABLY A GOOD PLACE TO TELL OPENEARS TO START LISTENING FOR KEYWORDS FOR THE AMBIENT AUDIO. THE LIST OF WORDS DETECTED WILL BE SAVED ONCE THE PHOTO IS CAPTURED AND NOT CANCELED
+    
+    //add the Recording Audio label
+    recordingAudioLabel = [UILabel new];
+    [recordingAudioLabel setText:@"Recording Audio"];
+    [recordingAudioLabel setTextColor:[UIColor redColor]];
+    [recordingAudioLabel setFont:[UIFont boldSystemFontOfSize:17]];
+    //[recordingAudioLabel setFrame:CGRectMake(173, 47, 140, 21)];
+    [recordingAudioLabel setFrame:CGRectMake(173, self.view.frame.size.height - 100, 140, 21)];
+    [self.view addSubview:recordingAudioLabel];
+    [recordingAudioLabel setHidden:false];
+    
+    recordingLabelIsShowing = true;
+    
+    recordingLabelShouldBeShowing = true;
+    
+    //This timer is what makes the recording label blink
+    [NSTimer scheduledTimerWithTimeInterval:.5
+                                     target:self
+                                   selector:@selector(changeLabel)
+                                   userInfo:nil
+                                    repeats:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -130,6 +161,26 @@ typedef enum
     instructionLabel = nil;
 }
 
+-(void)changeLabel
+{
+    //only blink the label if it SHOULD be on
+    if(recordingLabelShouldBeShowing)
+    {
+        if (recordingLabelIsShowing)
+        {
+            //[recordingAudioLabel setText:@""];
+            [recordingAudioLabel setHidden:true];
+            recordingLabelIsShowing = false;
+        }
+        else
+        {
+            //[recordingAudioLabel setText:@"Recording Audio"];
+            [recordingAudioLabel setHidden:false];
+            recordingLabelIsShowing = true;
+        }
+    }
+}
+
 #pragma mark - Private instance methods
 
 - (void)announceCurrentStatus
@@ -139,16 +190,6 @@ typedef enum
         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, currentStatus);
     }
 
-//    if (super.contextCaptureHelper.capturedCameraFrame == nil)
-//    {
-//        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, @"Camera view is active and audio is recording. Tap once to capture a photo.");
-//    }
-//    else
-//    {
-//        // Camera frame has already been captured, so announce
-//        // instructions about the swipes that can be performed.
-//        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, @"A photo has already been taken, and audio recording is continuing until you perform one of the following gestures. Swipe down to just save the photo to the album, swipe right to save the photo and select a group to send it to, swipe up to tag the photo for sending later, or swipe left to discard the photo and return to the camera mode.");
-//    }
 }
 
 #pragma mark - AccessibleGestureViewDelegate
@@ -158,8 +199,6 @@ typedef enum
     NSLog(@"##################### GestureBasedContextCaptureViewController: accessibleGestureViewDidBecomeFocused");
 
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, @"Tap once to enable gestures.");
-//    accessibleGestureView.accessibilityLabel = @"Gesture enabled. Tap once to start audio recording.";
-//    accessibleGestureView.accessibilityHint = @"";
 }
 
 #pragma mark - CaptureGestureHandlerDelegate
@@ -179,8 +218,13 @@ typedef enum
         {
             //HERE WE NEED TO TELL OPENEARS TO START LISTENING AND GATHERING KEYWORDS FOR THE VOICE MEMOS
             
+            recordingLabelShouldBeShowing = true;
+            
+            [recordingAudioLabel setHidden:false];
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, @"");
             [self startMemoAudioCapture];
+            
+
         }
     }
 }
@@ -238,22 +282,7 @@ typedef enum
                 [weakSelf startPhodioCapturePlaySound:YES];
             }];
         }
-        
-        // One-finger single tap
-        
-//        // FIX: disable single tap capture?
-//        [super saveCapturedContext];
-        
-//        if (super.capturedCameraFrame == nil)
-//        {
-//            // No camera frame has been captured yet, so interpret the tap
-//            // to mean capture the camera frame.
-//            [super captureCameraFrameAndStopCameraFrameCapture:YES stopAudioCapture:NO];
-//        }
-//        else
-//        {
-//            [self announceCurrentStatus];
-//        }
+
     }
     else if (numTouches == 1 && numTaps == 2)
     {
@@ -266,7 +295,8 @@ typedef enum
         //here the accessibility menu needs to be announced via voiceover
         if (instructionLabel.hidden)
         {
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, @"Single-tap with 1-finger to enable gesture. Single-tap with 2-fingers to toggle help. Swipe left with 1-finger to cancel. Swipe down with 1-finger to save to album. Swipe right with 1-finger to save and preview. Swipe up with 1-finger to save and record voice memo.");
+            //For right now, we're removing the part that says "Swipe right to save and preview". June 4, 2015
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, @"Single-tap with 1-finger to enable gesture. Single-tap with 2-fingers to toggle help. Swipe left with 1-finger to cancel. Swipe down with 1-finger to save to album. Swipe up with 1-finger to save and record voice memo.");
         }
     }
 }
@@ -279,6 +309,7 @@ typedef enum
         {
             switch (direction) {
                 case UISwipeGestureRecognizerDirectionLeft:
+                    
                     [super exitCapture];
                     break;
                 case UISwipeGestureRecognizerDirectionDown:
@@ -307,7 +338,8 @@ typedef enum
                     break;
                 case UISwipeGestureRecognizerDirectionRight:
                     // Send to group
-                    [super saveCapturedContextAndPromptWhatToDo];
+                    // the below saveCapturedContextAndPromptWhatToDo line is commented out because we don't necessarily need that preview option. June 4, 2015
+                    // [super saveCapturedContextAndPromptWhatToDo];
                     break;
                 default:
                     break;
@@ -318,6 +350,7 @@ typedef enum
     {
         if (numTouches == 1)
         {
+            //this is a swipe left (i.e. cancel)
             switch (direction) {
                 case UISwipeGestureRecognizerDirectionLeft:
                     {

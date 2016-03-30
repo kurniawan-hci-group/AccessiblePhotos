@@ -38,9 +38,6 @@ enum {
 - (BOOL)isCameraFrameCapturing;
 - (void)stopCameraFrameCapture;
 
-- (void)startRecordingVideoToFile:(NSString *)filepath;
-- (void)stopRecordingVideo;
-
 - (void)embedPreviewInView:(UIView *)aView;
 - (AVCaptureVideoPreviewLayer *)previewInView:(UIView *)view;
 - (void)layoutPreviewInView:(UIView *)aView;

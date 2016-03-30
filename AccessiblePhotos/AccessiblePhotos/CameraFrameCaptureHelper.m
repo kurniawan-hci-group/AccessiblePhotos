@@ -84,11 +84,13 @@
         AVCaptureDeviceInput *photoCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:cameraDevice error:&error];
         if (!photoCameraDeviceInput)
         {
-            NSLog(@"ERROR: Couldn't create video capture device: %@", error.localizedDescription);
+            NSLog(@"ERROR: Couldn't create video feed capture device: %@", error.localizedDescription);
             return nil;
         }
 
-        // Create the video data output for grabbing frames from camera.
+        //This section is OK because it allows in the video streaming device
+        
+        // Create the video feed data output for grabbing frames from camera.
         AVCaptureVideoDataOutput *videoDataCameraFrameOutput = [AVCaptureVideoDataOutput new];
         videoDataCameraFrameOutput.alwaysDiscardsLateVideoFrames = YES;
         [videoDataCameraFrameOutput setSampleBufferDelegate:self queue:dispatch_queue_create("com.ibm.research.tokyo.ar", NULL)];
@@ -112,7 +114,7 @@
         {
             NSLog(@"ERROR: Couldn't add camera device input");
         }
-
+        
         // Add the video data output
         if ([photoCaptureSession canAddOutput:videoDataCameraFrameOutput])
         {
@@ -128,62 +130,6 @@
         // Initialize the photo preview layer
         photoCapturePreviewLayer = [AVCaptureVideoPreviewLayer layerWithSession:photoCaptureSession];
         photoCapturePreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-        
-        
-        ////////////////////
-        // Set up the movie capture
-
-        // Create the capture device input for the above chosen camera
-        AVCaptureDeviceInput *movieCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:cameraDevice error:&error];
-        if (!movieCameraDeviceInput)
-        {
-            NSLog(@"ERROR: Couldn't create video capture device: %@", error.localizedDescription);
-            return nil;
-        }
-        
-        // Create the movie file output
-        movieFileOutput = [AVCaptureMovieFileOutput new];
-        
-        // Create movie capture session
-        movieCaptureSession = [AVCaptureSession new];
-        [movieCaptureSession beginConfiguration];
-        movieCaptureSession.sessionPreset = AVCaptureSessionPresetHigh;
-        
-        // Add the camera device input
-        if ([movieCaptureSession canAddInput:movieCameraDeviceInput])
-        {
-            [movieCaptureSession addInput:movieCameraDeviceInput];
-        }
-        else
-        {
-            NSLog(@"ERROR: Couldn't add video input");
-        }
-        
-        // Add the microphone device input
-        if ([movieCaptureSession canAddInput:microphoneDeviceInput])
-        {
-            [movieCaptureSession addInput:microphoneDeviceInput];
-        }
-        else
-        {
-            NSLog(@"ERROR: Couldn't add microphone input");
-        }
-
-        // Add the movie file output
-        if ([movieCaptureSession canAddOutput:movieFileOutput])
-        {
-            [movieCaptureSession addOutput:movieFileOutput];
-        }
-        else
-        {
-            NSLog(@"ERROR: Couldn't add movie file output");
-        }
-        
-        [movieCaptureSession commitConfiguration];
-        
-        // Initialize the movie preview layer
-        movieCapturePreviewLayer = [AVCaptureVideoPreviewLayer layerWithSession:movieCaptureSession];
-        movieCapturePreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
         
         
         [self setupCameraDevice:cameraDevice];
@@ -313,7 +259,6 @@
 
 - (void)startCameraFrameCapture
 {
-    // FIX: stop video capture first
     [photoCaptureSession startRunning];
 }
 
@@ -326,60 +271,6 @@
 {
     [photoCaptureSession stopRunning];
 }
-
-- (void)startRecordingVideoToFile:(NSString *)filepath
-{
-    NSLog(@"Stopping photo capture session");
-    [photoCaptureSession stopRunning];
-    NSLog(@"  Stopped photo capture session");
-    
-    
-    // Swap out the preview layer
-    if (parentViewForPreview != nil)
-    {
-        [photoCapturePreviewLayer removeFromSuperlayer];
-        movieCapturePreviewLayer.frame = parentViewForPreview.bounds;
-        [parentViewForPreview.layer insertSublayer:movieCapturePreviewLayer atIndex:0];
-    }
-    
-    // Make sure the target file doesn't already exist.
-    if ([[NSFileManager defaultManager] fileExistsAtPath:filepath])
-    {
-        NSLog(@"Movie file already exists at %@. Attempting to delete.", filepath);
-        NSError *error = nil;
-        [[NSFileManager defaultManager] removeItemAtPath:filepath error:&error];
-        if (error != nil)
-        {
-            NSLog(@"ERROR: couldn't delete file at %@", filepath);
-        }
-    }
-    NSLog(@"Starting movie capture session");
-    [movieCaptureSession startRunning];
-    NSLog(@"  Started movie capture session");
-    [movieFileOutput startRecordingToOutputFileURL:[[NSURL alloc] initFileURLWithPath:filepath] recordingDelegate:self];
-}
-
-- (void)stopRecordingVideo
-{
-    [movieFileOutput stopRecording];
-    NSLog(@"Stopping movie capture session");
-    [movieCaptureSession stopRunning];
-    NSLog(@"  Stopped movie capture session");
-
-    // Swap out the preview layer
-    if (parentViewForPreview != nil)
-    {
-        [movieCapturePreviewLayer removeFromSuperlayer];
-        photoCapturePreviewLayer.frame = parentViewForPreview.bounds;
-        [parentViewForPreview.layer insertSublayer:photoCapturePreviewLayer atIndex:0];
-    }
-
-    
-    NSLog(@"Starting photo capture session");
-    [photoCaptureSession startRunning];
-    NSLog(@"  Started photo capture session");
-}
-
 
 - (void)embedPreviewInView:(UIView *)aView
 {
@@ -512,11 +403,6 @@
             NSDictionary *imageOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:orientation] forKey:CIDetectorImageOrientation];
             NSArray *faces = [faceDetector featuresInImage:_currentCIImage options:imageOptions];
             
-            for (CIFaceFeature *faceFeature in faces)
-            {
-                
-            }
-            
             if (self.currentNumFacesDetected != faces.count)
             {
                 self.currentNumFacesDetected = faces.count;
@@ -525,11 +411,13 @@
     }
 }
 
+
 #pragma mark - AVCaptureFileOutputRecordingDelegate
 
 - (void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray *)connections error:(NSError *)error
 {
-    NSLog(@"Successfully recorded video to %@", outputFileURL.path);
+    //COMMENTED OUT BY DUSTIN 3/16/2015 IN ORDER TO REMOVE ALL TRACES OF VIDEO CAPTURE IN ORDER TO SUBMIT TO APP STORE
+    //NSLog(@"Successfully recorded video to %@", outputFileURL.path);
 }
 
 @end

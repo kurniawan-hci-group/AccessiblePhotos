@@ -10,8 +10,8 @@
 #import "ContextCaptureViewController_Protected.h"
 #import "ContextCaptureViewController.h"
 #import "CapturedContextManager.h"
-#import "UserManager.h"
-#import "WebRequestManager.h"
+//#import "UserManager.h"
+//#import "WebRequestManager.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "FileUtils.h"
 #import "Settings.h"
@@ -20,20 +20,15 @@
 
 @property (nonatomic, weak) IBOutlet UIView *backgroundGestureView;
 @property (nonatomic, weak) IBOutlet UIButton *quickCaptureButton;
-@property (nonatomic, weak) IBOutlet UIButton *captureAndSendButton;
 @property (nonatomic, weak) IBOutlet UIButton *doneButton;
 @property (nonatomic, weak) IBOutlet UIButton *playbackVideoButton;
 
 @property (nonatomic, weak) IBOutlet UIButton *switchCameraButton;
-@property (nonatomic, weak) IBOutlet UIButton *startStopVideoRecordingButton;
 
 - (IBAction)quickCaptureButtonTapped:(id)sender;
-- (IBAction)captureButtonTapped:(id)sender;
 - (IBAction)goToAlbumButtonTapped:(id)sender;
 - (IBAction)switchCameraButtonTapped:(id)sender;
 
-- (IBAction)startStopVideoButtonTapped:(id)sender;
-- (IBAction)playVideo:(id)sender;
 
 @end
 
@@ -44,15 +39,15 @@
     id moviePlayerPlaybackDidFinishObserver;
     
     BOOL buttonsHidden;
+    UILabel *recordingAudioLabel;
+    bool recordingLabelIsShowing;
 }
 
 @synthesize backgroundGestureView;
 @synthesize quickCaptureButton;
-@synthesize captureAndSendButton;
 @synthesize doneButton;
 @synthesize playbackVideoButton;
 @synthesize switchCameraButton;
-@synthesize startStopVideoRecordingButton;
 
 - (void)viewDidLoad
 {
@@ -65,8 +60,43 @@
     
     if ([Settings sharedInstance].interfaceType == kInterfaceTypeStandard)
     {
-        self.startStopVideoRecordingButton.hidden = YES;
         self.playbackVideoButton.hidden = YES;
+    }
+    
+    //add the Recording Audio label
+    recordingAudioLabel = [UILabel new];
+    [recordingAudioLabel setText:@"Recording Audio"];
+    [recordingAudioLabel setTextColor:[UIColor redColor]];
+    [recordingAudioLabel setFont:[UIFont boldSystemFontOfSize:17]];
+    [recordingAudioLabel setFrame:CGRectMake(173, self.view.frame.size.height - 100, 140, 21)];
+    [self.view addSubview:recordingAudioLabel];
+    [recordingAudioLabel setHidden:false];
+    
+    //change the buttons to have a background of white
+    [quickCaptureButton setBackgroundColor:[UIColor whiteColor]];
+    [switchCameraButton setBackgroundColor:[UIColor whiteColor]];
+    [doneButton setBackgroundColor:[UIColor whiteColor]];
+    
+    recordingLabelIsShowing = true;
+    
+    [NSTimer scheduledTimerWithTimeInterval:.5
+                                     target:self
+                                   selector:@selector(changeLabel)
+                                   userInfo:nil
+                                    repeats:YES];
+}
+
+-(void)changeLabel
+{
+    if (recordingLabelIsShowing)
+    {
+        [recordingAudioLabel setHidden:true];
+        recordingLabelIsShowing = false;
+    }
+    else
+    {
+        [recordingAudioLabel setHidden:false];
+        recordingLabelIsShowing = true;
     }
 }
 
@@ -77,13 +107,6 @@
 //    [super captureCameraFrameAndStopCameraFrameCapture:YES stopAudioCapture:YES];
 //    [super justSaveCapturedContextToAlbum];
     [super saveCapturedContextAndResumeCaptureWithCompletion:nil];
-}
-
-- (IBAction)captureButtonTapped:(id)sender
-{
-//    [super captureCameraFrameAndStopCameraFrameCapture:YES stopAudioCapture:YES];
-//    [super promptWhatToDoWithCapturedContext];
-    [super saveCapturedContextAndPromptWhatToDo];
 }
 
 - (IBAction)goToAlbumButtonTapped:(id)sender
@@ -99,74 +122,6 @@
     self.switchCameraButton.accessibilityLabel = buttonLabel;
 }
 
-- (void)startStopVideoButtonTapped:(id)sender
-{
-    isRecordingVideo = !isRecordingVideo;
-    
-    if (isRecordingVideo)
-    {
-        [self.startStopVideoRecordingButton setTitle:@"Stop recording" forState:UIControlStateNormal];
-        NSString *movieFilepath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"test.mp4"];
-        [super.contextCaptureHelper.cameraFrameCaptureHelper startRecordingVideoToFile:movieFilepath];
-    }
-    else
-    {
-        [self.startStopVideoRecordingButton setTitle:@"Record video" forState:UIControlStateNormal];
-        [super.contextCaptureHelper.cameraFrameCaptureHelper stopRecordingVideo];
-    }
-}
-
-- (void)playVideo:(id)sender
-{
-    [super.contextCaptureHelper stopPhodioCaptureWithCompletion:^(ContextCaptureHelper *sender, BOOL success) {
-        // TODO: discard phodio?
-        
-        NSString *movieFilepath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"test.mp4"];
-        NSURL *videoURL=[[NSURL alloc] initFileURLWithPath:movieFilepath];
-        
-        MPMoviePlayerViewController *moviePlayerViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:videoURL];
-        
-        moviePlayerPlaybackDidFinishObserver = [[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:moviePlayerViewController queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note)
-                                                {
-                                                    NSLog(@"Finished playing movie");
-                                                    [[NSNotificationCenter defaultCenter] removeObserver:moviePlayerPlaybackDidFinishObserver];;
-                                                    moviePlayerPlaybackDidFinishObserver = nil;
-                                                    
-                                                    [self dismissModalViewControllerAnimated:YES];
-                                                    
-//                                                    [super startAmbientAudioCapture];
-//                                                    [super startCameraFrameCapture];
-                                                    [super.contextCaptureHelper startPhodioCapture];
-                                                }];
-        
-        [self presentMoviePlayerViewControllerAnimated:moviePlayerViewController];
-        
-        NSLog(@"Started playing movie");
-    }];
-//    [super stopAudioCaptureAndKeepAudioFile:NO];
-//    [super stopCameraFrameCapture];
-    
-//    NSString *movieFilepath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"test.mp4"];
-//    NSURL *videoURL=[[NSURL alloc] initFileURLWithPath:movieFilepath];
-//    
-//    MPMoviePlayerViewController *moviePlayerViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:videoURL];
-//    
-//    moviePlayerPlaybackDidFinishObserver = [[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:moviePlayerViewController queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note)
-//    {
-//        NSLog(@"Finished playing movie");
-//        [[NSNotificationCenter defaultCenter] removeObserver:moviePlayerPlaybackDidFinishObserver];;
-//        moviePlayerPlaybackDidFinishObserver = nil;
-//
-//        [self dismissModalViewControllerAnimated:YES];
-//
-//        [super startAmbientAudioCapture];
-//        [super startCameraFrameCapture];
-//    }];
-//
-//    [self presentMoviePlayerViewControllerAnimated:moviePlayerViewController];
-//    
-//    NSLog(@"Started playing movie");
-}
 
 - (void)handleTap:(UITapGestureRecognizer *)recognizer
 {
@@ -175,21 +130,17 @@
         {
             buttonsHidden = NO;
             self.quickCaptureButton.alpha = 0.6;
-            self.captureAndSendButton.alpha = 0.6;
             self.doneButton.alpha = 0.6;
             self.playbackVideoButton.alpha = 0.6;
             self.switchCameraButton.alpha = 0.6;
-            self.startStopVideoRecordingButton.alpha = 0.6;
         }
         else
         {
             buttonsHidden = YES;
             self.quickCaptureButton.alpha = 0.0;
-            self.captureAndSendButton.alpha = 0.0;
             self.doneButton.alpha = 0.0;
             self.playbackVideoButton.alpha = 0.0;
             self.switchCameraButton.alpha = 0.0;
-            self.startStopVideoRecordingButton.alpha = 0.0;
         }
     }];
 }

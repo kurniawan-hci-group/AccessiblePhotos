@@ -13,7 +13,8 @@
 
 @property (nonatomic, copy, readonly) NSDate *timestamp;
 @property (nonatomic, readonly) NSTimeZone *timeZone;
-@property (nonatomic, weak, readonly) UIImage *uiImage;
+//@property (nonatomic, weak, readonly) UIImage *uiImage;
+@property (nonatomic, retain) UIImage *uiImage;
 @property (nonatomic, copy) NSString *photoFilename;
 @property (nonatomic, copy, readonly) NSString *photoFilePath;
 @property (nonatomic, copy) NSString *ambientAudioFilename;

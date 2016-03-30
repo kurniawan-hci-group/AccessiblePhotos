@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Lbr-b0-aO4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Lbr-b0-aO4">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Unified Camera Launcher View Controller - Camera-->
+        <!--Camera-->
         <scene sceneID="mwM-yA-v9W">
             <objects>
                 <viewController id="XgE-iU-1Dx" customClass="UnifiedCameraLauncherViewController" sceneMemberID="viewController">
@@ -33,7 +32,7 @@
             </objects>
             <point key="canvasLocation" x="827" y="-198"/>
         </scene>
-        <!--Button Based Context Capture View Controller - Camera-->
+        <!--Camera-->
         <scene sceneID="yNS-QS-2c0">
             <objects>
                 <viewController wantsFullScreenLayout="YES" id="bBA-yM-VCa" customClass="ButtonBasedContextCaptureViewController" sceneMemberID="viewController">
@@ -55,69 +54,39 @@
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" alpha="0.60000002384185791" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IjZ-2M-Cl2">
+                                        <rect key="frame" x="0.0" y="34" width="153" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Quick capture">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="quickCaptureButtonTapped:" destination="bBA-yM-VCa" eventType="touchUpInside" id="zcl-Dy-f36"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" alpha="0.60000002384185791" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cZG-fH-xzq">
+                                        <rect key="frame" x="1" y="235" width="152" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goToAlbumButtonTapped:" destination="bBA-yM-VCa" eventType="touchUpInside" id="Clt-Ie-4Af"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" alpha="0.60000002384185791" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gw2-03-0Xd">
+                                        <rect key="frame" x="0.0" y="106" width="153" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Switch camera">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="switchCameraButtonTapped:" destination="bBA-yM-VCa" eventType="touchUpInside" id="i8A-tZ-5Sx"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" alpha="0.60000002384185791" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IjZ-2M-Cl2">
-                                <rect key="frame" x="-1" y="13" width="153" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Quick capture">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="quickCaptureButtonTapped:" destination="bBA-yM-VCa" eventType="touchUpInside" id="zcl-Dy-f36"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.60000002384185791" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Az-SO-dh5">
-                                <rect key="frame" x="-1" y="71" width="153" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Capture and send">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="captureButtonTapped:" destination="bBA-yM-VCa" eventType="touchUpInside" id="Jro-bE-Ded"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.60000002384185791" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cZG-fH-xzq">
-                                <rect key="frame" x="0.0" y="129" width="152" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Done">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="goToAlbumButtonTapped:" destination="bBA-yM-VCa" eventType="touchUpInside" id="Clt-Ie-4Af"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.60000002384185791" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gw2-03-0Xd">
-                                <rect key="frame" x="168" y="13" width="153" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Switch camera">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="switchCameraButtonTapped:" destination="bBA-yM-VCa" eventType="touchUpInside" id="i8A-tZ-5Sx"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.60000002384185791" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NPA-qC-Pzu">
-                                <rect key="frame" x="-1" y="340" width="153" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Record video">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="startStopVideoButtonTapped:" destination="bBA-yM-VCa" eventType="touchUpInside" id="cAF-va-eK9"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.60000002384185791" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iX2-iU-1Eh">
-                                <rect key="frame" x="0.0" y="397" width="153" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Play video">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="playVideo:" destination="bBA-yM-VCa" eventType="touchUpInside" id="8NN-EE-8WN"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -125,12 +94,9 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="backgroundGestureView" destination="8tn-Tq-ZWh" id="7g8-ho-4ae"/>
-                        <outlet property="captureAndSendButton" destination="6Az-SO-dh5" id="Azu-H6-vFV"/>
                         <outlet property="doneButton" destination="cZG-fH-xzq" id="glW-lk-h0g"/>
                         <outlet property="numFacesLabel" destination="rQ8-AS-gPX" id="Wik-vf-yai"/>
-                        <outlet property="playbackVideoButton" destination="iX2-iU-1Eh" id="yM7-Ej-GEk"/>
                         <outlet property="quickCaptureButton" destination="IjZ-2M-Cl2" id="o4I-fO-nNG"/>
-                        <outlet property="startStopVideoRecordingButton" destination="NPA-qC-Pzu" id="38W-tG-9gJ"/>
                         <outlet property="switchCameraButton" destination="gw2-03-0Xd" id="tj9-hx-gzx"/>
                         <segue destination="oUI-Ne-iC2" kind="modal" identifier="showCapturedContextActionSegue" id="bX8-6g-yrV"/>
                     </connections>
@@ -149,7 +115,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="groupNameCell" textLabel="bcB-hR-OsX" style="IBUITableViewCellStyleDefault" id="Ga8-AZ-YSq">
-                                <rect key="frame" x="0.0" y="119" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="94" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ga8-AZ-YSq" id="oOm-SJ-1YE">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -207,7 +173,7 @@ username and password.</string>
                             </label>
                             <navigationBar contentMode="scaleToFill" id="Cyk-8s-Crg">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem id="ymG-cb-hP6">
                                         <barButtonItem key="leftBarButtonItem" title="Use without logging in" id="9QL-LI-adG">
@@ -282,7 +248,6 @@ username and password.</string>
                     <connections>
                         <segue destination="XgE-iU-1Dx" kind="relationship" relationship="viewControllers" id="N9V-MY-30d"/>
                         <segue destination="41Y-vj-5Mw" kind="relationship" relationship="viewControllers" id="hR1-LS-52d"/>
-                        <segue destination="WfB-4u-KOw" kind="relationship" relationship="viewControllers" id="cyX-0f-f5x"/>
                         <segue destination="mBE-qu-N55" kind="relationship" relationship="viewControllers" id="Hab-q1-Mgh"/>
                         <segue destination="1IV-Co-I3m" kind="relationship" relationship="viewControllers" id="aVK-WE-Res"/>
                     </connections>
@@ -291,7 +256,7 @@ username and password.</string>
             </objects>
             <point key="canvasLocation" x="301" y="431"/>
         </scene>
-        <!--Navigation Controller - By Date-->
+        <!--By Date-->
         <scene sceneID="Nob-t6-gEl">
             <objects>
                 <navigationController id="mBE-qu-N55" sceneMemberID="viewController">
@@ -310,29 +275,7 @@ username and password.</string>
             </objects>
             <point key="canvasLocation" x="827" y="983"/>
         </scene>
-        <!--To Send Audio Preview View Controller - To Send-->
-        <scene sceneID="dU7-xl-Kjl">
-            <objects>
-                <tableViewController id="xrg-z7-tEY" customClass="ToSendAudioPreviewViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="NJn-fE-Hp5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <connections>
-                            <outlet property="dataSource" destination="xrg-z7-tEY" id="IfO-E9-LW9"/>
-                            <outlet property="delegate" destination="xrg-z7-tEY" id="L1z-xk-e44"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="To Send" id="kHL-l6-vcn"/>
-                    <connections>
-                        <segue destination="1Oi-tn-7Pa" kind="push" identifier="ShowSingleCapturedContextSegue" id="mpK-Mc-PVl"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zvX-I0-2iP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1347" y="2179"/>
-        </scene>
-        <!--Navigation Controller - View all-->
+        <!--View all-->
         <scene sceneID="LxM-aL-dzT">
             <objects>
                 <navigationController id="41Y-vj-5Mw" sceneMemberID="viewController">
@@ -351,26 +294,7 @@ username and password.</string>
             </objects>
             <point key="canvasLocation" x="827" y="419"/>
         </scene>
-        <!--Navigation Controller - To send-->
-        <scene sceneID="9Rk-Ui-tOC">
-            <objects>
-                <navigationController id="WfB-4u-KOw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="To send" id="LPk-wx-CSg"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="8Mp-pU-1yC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="xrg-z7-tEY" kind="relationship" relationship="rootViewController" id="HfK-eh-fHj"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ogQ-RM-3JS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="827" y="2179"/>
-        </scene>
-        <!--Settings View Controller - Settings-->
+        <!--Settings-->
         <scene sceneID="xXg-J3-wNa">
             <objects>
                 <tableViewController id="rs5-lK-vsY" customClass="SettingsViewController" sceneMemberID="viewController">
@@ -382,7 +306,7 @@ username and password.</string>
                             <tableViewSection headerTitle="Camera settings" id="BZi-fu-Lz4">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="pyg-hL-4cX">
-                                        <rect key="frame" x="0.0" y="119" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pyg-hL-4cX" id="D3N-e6-bao">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -410,7 +334,7 @@ username and password.</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="j1P-oZ-oIy">
-                                        <rect key="frame" x="0.0" y="163" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="94" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j1P-oZ-oIy" id="X0N-gj-xuh">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -438,7 +362,7 @@ username and password.</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hwe-OP-1JE">
-                                        <rect key="frame" x="0.0" y="207" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="138" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hwe-OP-1JE" id="o51-IT-S7m">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -466,7 +390,7 @@ username and password.</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="mSp-yO-mg3">
-                                        <rect key="frame" x="0.0" y="251" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="182" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mSp-yO-mg3" id="xkw-ud-v0y">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -494,7 +418,7 @@ username and password.</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="86B-gi-ZQm">
-                                        <rect key="frame" x="0.0" y="295" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="226" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="86B-gi-ZQm" id="jx2-O4-nad">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -543,7 +467,7 @@ username and password.</string>
             </objects>
             <point key="canvasLocation" x="1369" y="2823"/>
         </scene>
-        <!--By Date Table View Controller - ByDateTableViewController-->
+        <!--ByDateTableViewController-->
         <scene sceneID="G9d-4H-NlZ">
             <objects>
                 <tableViewController storyboardIdentifier="ByDateTableViewController" title="ByDateTableViewController" id="bEa-q2-SvF" customClass="ByDateTableViewController" sceneMemberID="viewController">
@@ -553,7 +477,7 @@ username and password.</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dateCell" textLabel="a3a-1z-Y5Y" detailTextLabel="mYG-Vk-zsU" style="IBUITableViewCellStyleSubtitle" id="J5k-Km-dpX">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J5k-Km-dpX" id="X1O-Tq-xwW">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -592,7 +516,7 @@ username and password.</string>
             </objects>
             <point key="canvasLocation" x="1773" y="975"/>
         </scene>
-        <!--Audio Preview View Controller - AudioTableViewController-->
+        <!--AudioTableViewController-->
         <scene sceneID="LbZ-S1-FEO">
             <objects>
                 <tableViewController storyboardIdentifier="AudioTableViewController" title="AudioTableViewController" id="Gmg-i6-1K6" customClass="AudioPreviewViewController" sceneMemberID="viewController">
@@ -615,7 +539,7 @@ username and password.</string>
             </objects>
             <point key="canvasLocation" x="2263" y="983"/>
         </scene>
-        <!--Single Captured Context View Controller - Detailed Image-->
+        <!--Detailed Image-->
         <scene sceneID="kkS-zL-urr">
             <objects>
                 <viewController id="1Oi-tn-7Pa" customClass="SingleCapturedContextViewController" sceneMemberID="viewController">
@@ -625,7 +549,7 @@ username and password.</string>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="t9T-TF-1cz">
                                 <rect key="frame" x="0.0" y="126" width="320" height="354"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="ObX-ji-TDd">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
@@ -679,7 +603,7 @@ username and password.</string>
             </objects>
             <point key="canvasLocation" x="3482" y="310"/>
         </scene>
-        <!--By Month Table View Controller - ByMonthTableViewController-->
+        <!--ByMonthTableViewController-->
         <scene sceneID="wj8-4N-u0l">
             <objects>
                 <tableViewController storyboardIdentifier="ByMonthTableViewController" title="ByMonthTableViewController" id="DRX-Lm-aln" customClass="ByMonthTableViewController" sceneMemberID="viewController">
@@ -689,7 +613,7 @@ username and password.</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="monthCell" textLabel="K6W-rP-2Kf" detailTextLabel="Dai-zc-JsS" style="IBUITableViewCellStyleSubtitle" id="cru-Rg-KSH">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cru-Rg-KSH" id="eLa-2X-M5j">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -727,7 +651,7 @@ username and password.</string>
             </objects>
             <point key="canvasLocation" x="1347" y="975"/>
         </scene>
-        <!--Audio Preview View Controller - All Photos-->
+        <!--All Photos-->
         <scene sceneID="kxI-Zz-ykM">
             <objects>
                 <tableViewController id="UTu-Ne-edQ" customClass="AudioPreviewViewController" sceneMemberID="viewController">
@@ -749,7 +673,7 @@ username and password.</string>
             </objects>
             <point key="canvasLocation" x="1347" y="419"/>
         </scene>
-        <!--Gesture Based Context Capture View Controller - Camera-->
+        <!--Camera-->
         <scene sceneID="pwn-b9-yBw">
             <objects>
                 <viewController wantsFullScreenLayout="YES" id="KmF-UF-zsk" customClass="GestureBasedContextCaptureViewController" sceneMemberID="viewController">
@@ -812,7 +736,7 @@ username and password.</string>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoValueCell" id="SsL-zf-DAA">
-                                <rect key="frame" x="0.0" y="55" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="50" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SsL-zf-DAA" id="VZ7-Mz-HsN">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -829,7 +753,7 @@ username and password.</string>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ValueCell" textLabel="Kt3-cI-2qd" style="IBUITableViewCellStyleDefault" id="QH2-TT-s6F">
-                                <rect key="frame" x="0.0" y="99" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="94" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QH2-TT-s6F" id="Pu6-pc-RqU">
                                     <rect key="frame" x="0.0" y="0.0" width="281" height="43"/>
@@ -857,7 +781,7 @@ username and password.</string>
             </objects>
             <point key="canvasLocation" x="1895" y="2823"/>
         </scene>
-        <!--Navigation Controller - Settings-->
+        <!--Settings-->
         <scene sceneID="jHn-WY-GWg">
             <objects>
                 <navigationController id="1IV-Co-I3m" sceneMemberID="viewController">
@@ -908,7 +832,7 @@ username and password.</string>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" id="wrB-ug-5eG">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="98o-tC-o9y" id="dIE-gc-fBs"/>
                                 </connections>
@@ -931,7 +855,7 @@ username and password.</string>
             </objects>
             <point key="canvasLocation" x="3432" y="994"/>
         </scene>
-        <!--Navigation Controller - View all-->
+        <!--View all-->
         <scene sceneID="t3v-AR-RGh">
             <objects>
                 <navigationController definesPresentationContext="YES" id="l6A-sd-rf6" sceneMemberID="viewController">
@@ -954,8 +878,8 @@ username and password.</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="bX8-6g-yrV"/>
         <segue reference="5Ke-cl-VOV"/>
-        <segue reference="lta-hn-d20"/>
-        <segue reference="mpK-Mc-PVl"/>
+        <segue reference="vXY-4G-nyO"/>
     </inferredMetricsTieBreakers>
 </document>

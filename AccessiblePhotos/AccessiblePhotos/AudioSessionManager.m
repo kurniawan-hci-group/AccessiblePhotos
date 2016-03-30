@@ -103,12 +103,12 @@
     }
 
     // FIX: delete?
-//    error = nil;
-//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:&error];
-//    if (error)
-//    {
-//        NSLog(@"ERROR: AudioSessionManager; unable to set audio session category to Ambient: %@", error.localizedDescription);
-//    }
+    /*error = nil;
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:&error];
+    if (error)
+    {
+        NSLog(@"ERROR: AudioSessionManager; unable to set audio session category to Ambient: %@", error.localizedDescription);
+    }*/
 
     _currentMode = kAudioSessionModeNoAudio;
     return YES;
@@ -118,6 +118,7 @@
 {
     NSError *error = nil;
 
+    
     // First deactivate the audio session to make changes.
     error = nil;
     [[AVAudioSession sharedInstance] setActive:NO error:&error];
@@ -145,6 +146,7 @@
         UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
         AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute, sizeof(audioRouteOverride), &audioRouteOverride);
     }
+     
     
     // Reactivate the audio session.
     error = nil;

@@ -228,6 +228,7 @@ typedef void (^PlacemarkUpdateCompletionHandler)();
         // cell view is probably worse.
         // TODO: save a thumbnail
         _uiImage = [UIImage imageWithContentsOfFile:self.photoFilePath];
+        
     }
     return _uiImage;
 }

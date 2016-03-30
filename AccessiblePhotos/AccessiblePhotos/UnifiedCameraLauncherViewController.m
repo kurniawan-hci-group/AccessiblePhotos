@@ -10,7 +10,7 @@
 #import "ContextCaptureViewController.h"
 #import "CapturedContext.h"
 #import "CapturedContextManager.h"
-#import "WebRequestManager.h"
+//#import "WebRequestManager.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "Settings.h"
 
